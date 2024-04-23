@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import CompanyInfo from "@/components/company-info";
 import ReceiptData from "@/lib/helper/receipt-data";
 import { tnc } from "@/const/tnc/receipt.json"
+import { url } from "inspector";
 
 const defaultData = {
     "companyName": "EW Global Sdn Bhd",
@@ -26,8 +27,7 @@ const defaultData = {
     "type": "Receipt"
 }
 
-export default async function Receipt() {
-    const searchParams = useSearchParams()
+export default async function Receipt({ searchParams }: { searchParams: any }) {
     const data = searchParams.get('data')
     const dataJson = await ReceiptData(data)
 
