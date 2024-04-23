@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 import GradientHighlight from "@/components/gradient-highlight";
 import Image from "next/image";
 import { useSearchParams } from 'next/navigation'
@@ -28,7 +28,8 @@ const defaultData = {
 }
 
 export default async function Receipt({ searchParams }: { searchParams: any }) {
-    const data = searchParams.get('data')
+    const data = await searchParams?.data
+
     const dataJson = await ReceiptData(data)
 
     return (

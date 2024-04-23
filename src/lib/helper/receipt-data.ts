@@ -4,7 +4,7 @@ import StringToJson from "./string-to-json"
 
 export default async function ReceiptData(data: any) {
     if (!data) return null
-    const jsonData = StringToJson(data)
+    const jsonData = await StringToJson(data)
 
     const dataTranscode = {
         "orderNo": jsonData?.order_id,
