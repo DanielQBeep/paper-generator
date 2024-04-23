@@ -1,0 +1,16 @@
+{
+    "companyName": "NXG Global Sdn Bhd",
+    "companyRegNo": "1129502-X",
+    "companyAddress": {
+        "street": "Unit 67 & 68, Block K, Alamesra Plaza Utama, Jalan Sulaman",
+        "postcode": "88450",
+        "city": "Kota Kinabalu",
+        "state": "Sabah",
+        "country": "Malaysia"
+    },
+    "tel": "088-488 888",
+    "fax": "088-488 888",
+    "logo": "/images/ewg-logo.png",
+    "logoAlt": "EW Global Logo",
+    "type": "Invoice"
+}
