@@ -32,8 +32,6 @@ export default function Receipt() {
     const data = searchParams.get('data')
     const dataJson = JSON.parse(data!)
 
-    console.log(dataJson)
-
     return (
         <div className="page">
             <Headers props={defaultData} />

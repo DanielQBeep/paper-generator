@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // output: 'standalone',
+    // cacheDirectory: join(__dirname, 'node_modules', '.puppeteer_cache'),
     images: {
         remotePatterns: [
             {

@@ -3,7 +3,12 @@ import ReceiptData from "@/lib/helper/receipt-data";
 import puppeteer, { PDFOptions } from "puppeteer";
 
 export async function POST(request: Request) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        executablePath: '/usr/bin/chromium-browser',
+        // headless: 'new',
+        ignoreDefaultArgs: ['--disable-extensions'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page = await browser.newPage();
     const originalUrl = new URL(request.url).origin;
 
@@ -12,11 +17,11 @@ export async function POST(request: Request) {
     // const data = ReceiptData(await request.json())
 
     const pdfOptions = {
-        path: "test.pdf",
+        // path: "test.pdf",
         format: 'A4',
     } as PDFOptions;
 
-    await page.goto(`${originalUrl.replace("https://", "http://")}/receipt${data}`, { waitUntil: 'networkidle0' });
+    await page.goto(`http://localhost:3000/receipt${data}`, { waitUntil: 'networkidle0' });
 
     const pdfBuffer = await page.pdf(pdfOptions);
     await browser.close();
