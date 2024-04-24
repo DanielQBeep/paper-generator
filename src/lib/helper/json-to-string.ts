@@ -1,5 +1,7 @@
 export default function JsonToString(data: any) {
+    console.log('request 2')
     if (!data) return null
+
 
     delete data?.beneficiary?.full_name
     delete data?.beneficiary?.address?.render_full_address
@@ -14,6 +16,11 @@ export default function JsonToString(data: any) {
         delete cart?.render_remark
     })
 
-    return '?data=' + encodeURIComponent(JSON.stringify(data));
+    try {
+        return '?data=' + encodeURIComponent(JSON.stringify(data));
+    } catch (e) {
+        return null
+    }
+
 
 }

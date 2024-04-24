@@ -3,7 +3,7 @@ import StringToJson from "./string-to-json"
 
 
 export default async function ReceiptData(data: any) {
-    if (!data) return null
+    if (!data || typeof (data) != 'string') return null
     const jsonData = await StringToJson(data)
 
     const dataTranscode = {
@@ -48,6 +48,7 @@ export default async function ReceiptData(data: any) {
         "totalBeforeSST": jsonData?.currency?.code + " " + jsonData?.order?.total,
         "sst": jsonData?.currency?.code + " " + (jsonData?.order?.tax ?? 0),
         "totalSalesSST": jsonData?.currency?.code + " " + jsonData?.order?.total,
+        "remark": null
     }
 
     return dataTranscode

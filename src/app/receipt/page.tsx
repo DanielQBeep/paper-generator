@@ -1,13 +1,10 @@
-// "use client"
 import GradientHighlight from "@/components/gradient-highlight";
-import Image from "next/image";
-import { useSearchParams } from 'next/navigation'
 import Headers from "@/components/header";
 import Footer from "@/components/footer";
 import CompanyInfo from "@/components/company-info";
 import ReceiptData from "@/lib/helper/receipt-data";
 import { tnc } from "@/const/tnc/receipt.json"
-import { url } from "inspector";
+import FlexibleBox from "@/components/flexible-box";
 
 const defaultData = {
     "companyName": "EW Global Sdn Bhd",
@@ -60,30 +57,24 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                 </section>
                 <hr className="mt-2 bg-teal-600 max-h-0.5 min-h-0.5" />
                 <div className=" grid grid-cols-2 gap-4">
-                    <div id="billTo">
-                        <div className="font-semibold leading-6 mb-2 mt-2">Bill To:</div>
-                        <div className=" text-xs outline outline-1 px-2 pt-3 h-full">
-                            <div className="font-bold">{dataJson?.billTo?.name}</div>
-                            <div className="mt-4">{dataJson?.billTo?.address?.street}</div>
-                            <div>{dataJson?.billTo?.address?.postcode} {dataJson?.billTo?.address?.city}</div>
-                            <div>{dataJson?.billTo?.address?.country}</div>
-                            <div className="mt-4">{dataJson?.billTo?.contactNo}</div>
-                            <div>{dataJson?.billTo?.email}</div>
-                        </div>
-                    </div>
-                    <div id="shipTo">
-                        <div className="font-semibold leading-6 mb-2 mt-2">Ship To:</div>
-                        <div className=" text-xs outline outline-1 px-2 pt-3 h-full">
-                            <div className="font-bold">{dataJson?.shipTo?.name}</div>
-                            <div className="mt-4">{dataJson?.shipTo?.address?.street}</div>
-                            <div>{dataJson?.shipTo?.address?.postcode} {dataJson?.shipTo?.address?.city}</div>
-                            <div>{dataJson?.shipTo?.address?.country}</div>
-                            <div className="mt-4">{dataJson?.shipTo?.contactNo}</div>
-                            <div>{dataJson?.shipTo?.email}</div>
-                        </div>
-                    </div>
+                    <FlexibleBox id="billTo" title="Bill To:">
+                        <div className="font-bold">{dataJson?.billTo?.name}</div>
+                        <div className="mt-4">{dataJson?.billTo?.address?.street}</div>
+                        <div>{dataJson?.billTo?.address?.postcode} {dataJson?.billTo?.address?.city}</div>
+                        <div>{dataJson?.billTo?.address?.country}</div>
+                        <div className="mt-4">{dataJson?.billTo?.contactNo}</div>
+                        <div>{dataJson?.billTo?.email}</div>
+                    </FlexibleBox>
+                    <FlexibleBox id="shipTo" title="Ship To:">
+                        <div className="font-bold">{dataJson?.shipTo?.name}</div>
+                        <div className="mt-4">{dataJson?.shipTo?.address?.street}</div>
+                        <div>{dataJson?.shipTo?.address?.postcode} {dataJson?.shipTo?.address?.city}</div>
+                        <div>{dataJson?.shipTo?.address?.country}</div>
+                        <div className="mt-4">{dataJson?.shipTo?.contactNo}</div>
+                        <div>{dataJson?.shipTo?.email}</div>
+                    </FlexibleBox>
                 </div>
-                <div className="py-2 pt-14">
+                <div className="py-2">
                     <table className="table-fixed min-w-full outline outline-1 outline-teal-600">
                         <thead className="text-white text-xs bg-teal-600 h-10">
                             <tr>
@@ -130,6 +121,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                 </div>
                 <div className=" grid grid-cols-3 py-2">
                     <div className=" col-span-2 text-xs text-gray-500">
+                        {dataJson?.remark ? "Remark: " + dataJson?.remark : ""}
                     </div>
                     <div className=" text-xs text-teal-700">
                         <div className="flex justify-between">

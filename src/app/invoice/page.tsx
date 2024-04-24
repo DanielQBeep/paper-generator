@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import CompanyInfo from "@/components/company-info";
 
 import tnc from "@/const/tnc/invoice.json"
+import FlexibleBox from "@/components/flexible-box";
 
 const defaultData = {
     "companyName": "NXG Global Sdn Bhd",
@@ -43,14 +44,14 @@ export default function Invoice() {
                         <GradientHighlight props={{ title: "Invoice details" }} className="col-span-2" />
                     </div>
                     <div className="grid grid-cols-3 gap-4">
-                        <div className="outline outline-1 text-xs px-3 py-2">
+                        <FlexibleBox id="billTo" disableBottomMargin={true}>
                             <div className="font-bold">{dataJson?.billTo?.name}</div>
                             <div className="mt-4">{dataJson?.billTo?.address?.street}</div>
                             <div>{dataJson?.billTo?.address?.postcode} {dataJson?.billTo?.address?.city}</div>
                             <div>{dataJson?.billTo?.address?.country}</div>
                             <div className="mt-4">{dataJson?.billTo?.contactNo}</div>
                             <div>{dataJson?.billTo?.email}</div>
-                        </div>
+                        </FlexibleBox>
                         <div className="grid grid-cols-2 text-xs col-span-2 h-fit">
                             <div className="grid grid-cols-2">
                                 <div className="font-semibold">Invoice No:</div>
@@ -84,7 +85,7 @@ export default function Invoice() {
                     </div>
                 </section>
                 <section>
-                    <div className="py-2 mt-2">
+                    <div className="py-2">
                         <table className="table-fixed min-w-full outline outline-1 outline-teal-600">
                             <thead className="text-white text-xs bg-teal-600 h-10">
                                 <tr>
