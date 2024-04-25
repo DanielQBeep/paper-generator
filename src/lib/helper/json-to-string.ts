@@ -1,5 +1,4 @@
 export default function JsonToString(data: any) {
-    console.log('request 2')
     if (!data) return null
 
 

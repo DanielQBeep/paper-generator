@@ -1,10 +1,12 @@
-import GradientHighlight from "@/components/gradient-highlight";
 import Headers from "@/components/header";
 import Footer from "@/components/footer";
+import GradientHighlight from "@/components/gradient-highlight";
 import CompanyInfo from "@/components/company-info";
-import ReceiptData from "@/lib/helper/receipt-data";
-import { tnc } from "@/const/tnc/receipt.json"
 import FlexibleBox from "@/components/flexible-box";
+
+import DataTranscode from "@/lib/helper/data-transcode";
+
+import tnc from "@/const/tnc/receipt.json"
 
 const defaultData = {
     "companyName": "EW Global Sdn Bhd",
@@ -27,7 +29,7 @@ const defaultData = {
 export default async function Receipt({ searchParams }: { searchParams: any }) {
     const data = await searchParams?.data
 
-    const dataJson = await ReceiptData(data)
+    const dataJson = await DataTranscode(data)
 
     return (
         <div className="page">
@@ -141,7 +143,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                 <div className=" col-span-2 text-xs text-gray-500">
                     *This is a computer generated invoice and does not require a signature.
                 </div>
-                <Footer props={{ tnc }} />
+                <Footer props={tnc} />
             </div>
         </div >
     );

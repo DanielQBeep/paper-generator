@@ -8,14 +8,15 @@ const brands = [
 ]
 
 const tick = (brands: any, i: number) => {
+    // console.log(brands)
     if (i === 0) return brands?.psc
     if (i === 1 || i === 3) return brands?.rms ?? brands?.mf3
     if (i === 2) return brands?.key("mf+")
     return true
 }
 
-export default function TickBoxItem({ props }: { props?: { orderDate: string, brands: { psc: boolean, rms: boolean, mf3: boolean, "mf+": boolean } } }) {
-    return <div className="grid grid-cols-3 gap-2">
+export default function TickBoxItem({ props, disableDate }: { props?: any, disableDate?: boolean }) {
+    return <div className="grid grid-cols-3 gap-2 mb-4">
         <div className="grid grid-cols-2 col-span-2">
             {
                 brands.map((brand, i) => (
@@ -26,7 +27,7 @@ export default function TickBoxItem({ props }: { props?: { orderDate: string, br
                 ))
             }
         </div>
-        <div className="flex flex-row">
+        <div className={`flex flex-row ${disableDate ? "hidden" : ""}`}>
             <div className="text-xs"> Date Generated:</div>
             <div className="text-xs ml-2">{props?.orderDate}</div>
         </div>

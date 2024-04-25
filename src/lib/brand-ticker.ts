@@ -1,9 +1,11 @@
 export default function BrandTicker(data: any) {
-    data?.carts.reduce((code: any, cart: any) => {
+    const brand = data?.reduce((code: any, cart: any) => {
         const brandCode = cart?.item?.main?.brand?.code?.toLowerCase();
         code[brandCode] = true;
         return code;
     }, {});
+
+    return brand
 }
 
 const brandSample = {

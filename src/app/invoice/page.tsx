@@ -1,13 +1,12 @@
-"use client"
-import GradientHighlight from "@/components/gradient-highlight";
-import Image from "next/image";
-import { useSearchParams } from 'next/navigation'
 import Headers from "@/components/header";
 import Footer from "@/components/footer";
-import CompanyInfo from "@/components/company-info";
+import GradientHighlight from "@/components/gradient-highlight";
+import FlexibleBox from "@/components/flexible-box";
+import TickBoxItem from "@/components/tick-box-item";
+
+import DataTranscode from "@/lib/helper/data-transcode";
 
 import tnc from "@/const/tnc/invoice.json"
-import FlexibleBox from "@/components/flexible-box";
 
 const defaultData = {
     "companyName": "NXG Global Sdn Bhd",
@@ -27,10 +26,14 @@ const defaultData = {
     "type": "Invoice"
 }
 
-export default function Invoice() {
-    const searchParams = useSearchParams()
-    const data = searchParams.get('data')
-    const dataJson = JSON.parse(data!)
+export default async function Invoice({ searchParams }: { searchParams: any }) {
+    const data = await searchParams?.data
+    const dataJson = await DataTranscode(data)
+
+    const brands = dataJson?.brands
+    const orderDate = dataJson?.orderDate
+
+    const tickItem = { brands, orderDate }
 
     return (
         <div className="page">
@@ -38,6 +41,7 @@ export default function Invoice() {
             {/* TODO: ADD TICK BOX*/}
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}
+                <TickBoxItem props={tickItem} />
                 <section>
                     <div className="grid grid-cols-3 gap-4 mb-4">
                         <GradientHighlight props={{ title: "Billed to" }} />

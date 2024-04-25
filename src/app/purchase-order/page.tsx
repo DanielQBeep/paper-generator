@@ -1,14 +1,12 @@
-"use client"
-import GradientHighlight from "@/components/gradient-highlight";
-import Image from "next/image";
-import { useSearchParams } from 'next/navigation'
 import Headers from "@/components/header";
 import Footer from "@/components/footer";
-import CompanyInfo from "@/components/company-info";
-
-import { tnc } from "@/const/tnc/invoice.json"
+import GradientHighlight from "@/components/gradient-highlight";
 import TickBoxItem from "@/components/tick-box-item";
 import FlexibleBox from "@/components/flexible-box";
+
+import DataTranscode from "@/lib/helper/data-transcode";
+
+import tnc from "@/const/tnc/invoice.json"
 
 const defaultData = {
     "companyName": "NXG Global Sdn Bhd",
@@ -28,10 +26,14 @@ const defaultData = {
     "type": "Purchase Order"
 }
 
-export default function Receipt() {
-    const searchParams = useSearchParams()
-    const data = searchParams.get('data')
-    const dataJson = JSON.parse(data!)
+export default async function Receipt({ searchParams }: { searchParams: any }) {
+    const data = await searchParams?.data
+    const dataJson = await DataTranscode(data)
+
+    const brands = dataJson?.brands
+    const orderDate = dataJson?.orderDate
+
+    const tickItem = { brands, orderDate }
 
     return (
         <div className="page">
@@ -39,8 +41,8 @@ export default function Receipt() {
 
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}
-                <TickBoxItem props={dataJson} />
-                <section className="mt-4">
+                <TickBoxItem props={tickItem} />
+                <section>
                     <GradientHighlight props={{ title: "Details" }} />
                     <div className="grid grid-cols-3 text-xs justify-between py-2 mt-1">
                         <div className="grid grid-cols-1">
@@ -127,7 +129,7 @@ export default function Receipt() {
                 <div className="text-xs text-gray-500">
                     *This is a computer generated invoice and does not require a signature.
                 </div>
-                <Footer props={{ tnc }} />
+                <Footer props={tnc} />
             </div>
         </div >
     );
