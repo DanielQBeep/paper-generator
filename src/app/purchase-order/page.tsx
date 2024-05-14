@@ -82,7 +82,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                     <table className="table-fixed min-w-full outline outline-1 outline-teal-600">
                         <thead className="text-white text-xs bg-teal-600 h-10">
                             <tr>
-                                <th className="text-center font-normal min-w-20 max-w-20 px-1">Product</th>
+                                <th className="text-center font-normal min-w-20 max-w-20 px-1">No</th>
                                 <th className="text-left font-normal min-w-20 max-w-20 px-1">Code</th>
                                 <th className="text-left font-normal w-full px-1">Description & Specification</th>
                                 <th className="text-center font-normal min-w-20 max-w-20 px-1">Qty</th>
@@ -111,8 +111,8 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                             {
                                 dataJson?.item?.map((item: any, index: number) => (
                                     <tr key={index} className={index % 2 === 0 ? "bg-teal-100/25" : ""}>
-                                        <td className="text-center px-1 py-1">{item.brand}</td>
-                                        <td className="px-1">{item.unit}</td>
+                                        <td className="text-center px-1 py-1">{index + 1}</td>
+                                        <td className="px-1">{item.code}</td>
                                         <td className="px-1">
                                             <div>{item.description}</div>
                                             <div>{item.specification}</div>
@@ -127,7 +127,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                     </table>
                 </div>
                 <div className="text-xs text-gray-500">
-                    *This is a computer generated invoice and does not require a signature.
+                    *This is a computer generated purchase order and does not require a signature.
                 </div>
                 <Footer props={tnc} />
             </div>

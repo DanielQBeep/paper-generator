@@ -140,7 +140,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                     </div>
                 </div>
                 <div className=" col-span-2 text-xs text-gray-500">
-                    *This is a computer generated invoice and does not require a signature.
+                    *This is a computer generated receipt and does not require a signature.
                 </div>
                 <Footer props={tnc} />
             </div>

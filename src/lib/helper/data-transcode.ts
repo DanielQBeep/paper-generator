@@ -22,7 +22,7 @@ export default async function DataTranscode(data: any) {
         "invoiceNo": jsonData?.payment?.invoice_no ?? "",
         "invoiceDate": DateConverter(jsonData?.payment?.created_at) ?? "",
         "receiptNo": jsonData?.payment?.receipt_no ?? "",
-        "salesPerson": jsonData?.seller?.id ?? "",
+        "salesPerson": jsonData?.seller?.display_name ?? "",
         "billTo": {
             "name": jsonData?.billing?.name ?? "",
             "contactNo": jsonData?.billing?.phone_full ?? "",
@@ -57,7 +57,8 @@ export default async function DataTranscode(data: any) {
                     "unitBase": (jsonData?.currency?.code ?? "") + " " + (cart?.price ?? ""),
                     "amount": (jsonData?.currency?.code ?? "") + " " + (cart?.amount ?? ""),
                     "brandID": (cart?.item?.main?.brand_id ?? ""),
-                    "brand": (cart?.item?.main?.brand?.code ?? "")
+                    "brand": (cart?.item?.main?.brand?.code ?? ""),
+                    "code": (cart?.item?.code ?? "")
                 }
             }),
         "brands": brand,
