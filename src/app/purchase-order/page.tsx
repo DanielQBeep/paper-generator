@@ -55,7 +55,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                         </div>
                         <div className="grid grid-cols-1">
                             <div className=" font-semibold">Order Date:</div>
-                            <div className="text-black/70">{dataJson?.paymentMode}</div>
+                            <div className="text-black/70">{dataJson?.orderDate}</div>
                         </div>
                     </div>
                 </section>
