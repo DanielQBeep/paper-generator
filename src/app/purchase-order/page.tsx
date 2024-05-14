@@ -50,8 +50,8 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                             <div className="text-black/70">{dataJson?.orderNo}</div>
                         </div>
                         <div className="grid grid-cols-1">
-                            <div className="font-semibold">Customer ID:</div>
-                            <div className="text-black/70">{dataJson?.referenceNo}</div>
+                            <div className="font-semibold">Customer:</div>
+                            <div className="text-black/70">{dataJson?.customer_name}</div>
                         </div>
                         <div className="grid grid-cols-1">
                             <div className=" font-semibold">Order Date:</div>
@@ -85,7 +85,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                                 <th className="text-center font-normal min-w-20 max-w-20 px-1">Product</th>
                                 <th className="text-left font-normal min-w-20 max-w-20 px-1">Code</th>
                                 <th className="text-left font-normal w-full px-1">Description & Specification</th>
-                                <th className="text-left font-normal min-w-20 max-w-20 px-1">Qty</th>
+                                <th className="text-center font-normal min-w-20 max-w-20 px-1">Qty</th>
                                 <th className="text-left font-normal min-w-24 max-w-24 px-1">Unit Price</th>
                                 <th className="text-left font-normal min-w-24 max-w-24 px-1">Amount</th>
                             </tr>
@@ -111,13 +111,13 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                             {
                                 dataJson?.item?.map((item: any, index: number) => (
                                     <tr key={index} className={index % 2 === 0 ? "bg-teal-100/25" : ""}>
-                                        <td className="text-center px-1 py-1">{item.quantity}</td>
+                                        <td className="text-center px-1 py-1">{item.brand}</td>
                                         <td className="px-1">{item.unit}</td>
                                         <td className="px-1">
                                             <div>{item.description}</div>
                                             <div>{item.specification}</div>
                                         </td >
-                                        <td className="px-1">{item.unitBase}</td>
+                                        <td className="px-1 text-center">{item.quantity}</td>
                                         <td className="px-1">{item.unitBase}</td>
                                         <td className="px-1">{item.amount}</td>
                                     </tr>

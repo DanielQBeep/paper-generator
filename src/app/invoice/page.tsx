@@ -50,40 +50,40 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
                     <div className="grid grid-cols-3 gap-4">
                         <FlexibleBox id="billTo" disableBottomMargin={true}>
                             <div className="font-bold">{dataJson?.billTo?.name}</div>
-                            <div className="mt-4">{dataJson?.billTo?.address?.street}</div>
+                            <div className="pt-4">{dataJson?.billTo?.address?.street}</div>
                             <div>{dataJson?.billTo?.address?.postcode} {dataJson?.billTo?.address?.city}</div>
                             <div>{dataJson?.billTo?.address?.country}</div>
-                            <div className="mt-4">{dataJson?.billTo?.contactNo}</div>
-                            <div>{dataJson?.billTo?.email}</div>
+                            <div className="pt-4">{dataJson?.billTo?.contactNo}</div>
+                            <div className="pb-4">{dataJson?.billTo?.email}</div>
                         </FlexibleBox>
                         <div className="grid grid-cols-2 text-xs col-span-2 h-fit">
                             <div className="grid grid-cols-2">
                                 <div className="font-semibold">Invoice No:</div>
-                                <div className="text-black/70">{dataJson?.orderNo}</div>
+                                <div className="text-black/70">{dataJson?.invoiceNo}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="font-semibold">Invoice Date:</div>
-                                <div className="text-black/70">{dataJson?.referenceNo}</div>
+                                <div className="text-black/70">{dataJson?.invoiceDate}</div>
                             </div>
                             <hr className="my-1 bg-teal-600 max-h-0.5 min-h-0.5 mx-2" />
                             <hr className="my-1 bg-teal-600 max-h-0.5 min-h-0.5 mx-2" />
                             <div className="grid grid-cols-2">
                                 <div className=" font-semibold">PO No:</div>
-                                <div className="text-black/70">{dataJson?.paymentMode}</div>
+                                <div className="text-black/70">{dataJson?.poNo}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className=" font-semibold">Sales Person:</div>
-                                <div className="text-black/70">{dataJson?.orderDate}</div>
+                                <div className="text-black/70">{dataJson?.salesPerson}</div>
                             </div>
                             <hr className="my-1 bg-teal-600 max-h-0.5 min-h-0.5 mx-2" />
                             <hr className="my-1 bg-teal-600 max-h-0.5 min-h-0.5 mx-2" />
                             <div className="grid grid-cols-2">
                                 <div className=" font-semibold">Reference No:</div>
-                                <div className="text-black/70">{dataJson?.paymentMode}</div>
+                                <div className="text-black/70">{dataJson?.referenceNo}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className=" font-semibold">Order ID:</div>
-                                <div className="text-black/70">{dataJson?.orderDate}</div>
+                                <div className="text-black/70">{dataJson?.orderID}</div>
                             </div>
                         </div>
                     </div>
