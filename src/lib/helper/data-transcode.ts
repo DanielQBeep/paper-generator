@@ -5,16 +5,17 @@ import StringToJson from "./string-to-json"
 
 
 export default async function DataTranscode(data: any) {
-    if (!data || typeof (data) != 'string') return null
-    const jsonData = await StringToJson(data)
+    // if (!data || typeof (data) != 'string') return null
+    // const jsonData = await StringToJson(data)
+    const jsonData = data
     const brand = BrandTicker(jsonData?.carts)
 
     const dataTranscode = {
-        "customerID": jsonData?.order?.buyer_id,
-        "orderNo": jsonData?.order_id,
+        "customerID": jsonData?.buyer_id,
+        "orderNo": jsonData?.id,
         "referenceNo": jsonData?.reference_no,
-        "paymentMode": jsonData?.order?.pay_mode,
-        "orderDate": DateConverter(jsonData?.order?.created_at),
+        "paymentMode": jsonData?.pay_mode,
+        "orderDate": DateConverter(jsonData?.created_at),
         "poNo": jsonData?.po_no,
         "invoiceNo": jsonData?.invoice_no,
         "receiptNo": jsonData?.receipt_no,
@@ -48,7 +49,8 @@ export default async function DataTranscode(data: any) {
                 return {
                     "quantity": cart?.quantity,
                     "unit": "",
-                    "description": cart?.item?.title + " - " + cart?.item?.subtitle,
+                    "description": cart?.product_name + " - " + cart?.variation_name,
+                    "specification": "",
                     "unitBase": jsonData?.currency?.code + " " + cart?.price,
                     "amount": jsonData?.currency?.code + " " + cart?.amount,
                     "brandID": cart?.item?.main?.brand_id,
@@ -56,9 +58,9 @@ export default async function DataTranscode(data: any) {
                 }
             }),
         "brands": brand,
-        "totalBeforeSST": jsonData?.currency?.code + " " + jsonData?.order?.total,
-        "sst": jsonData?.currency?.code + " " + (jsonData?.order?.tax ?? 0),
-        "totalSalesSST": jsonData?.currency?.code + " " + jsonData?.order?.total,
+        "totalBeforeSST": jsonData?.currency?.code + " " + jsonData?.total,
+        "sst": jsonData?.currency?.code + " " + (jsonData?.tax ?? 0),
+        "totalSalesSST": jsonData?.currency?.code + " " + jsonData?.total,
         "remark": jsonData?.remarks
     }
 

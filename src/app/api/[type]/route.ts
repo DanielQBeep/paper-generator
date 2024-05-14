@@ -1,5 +1,7 @@
 import JsonToString from "@/lib/helper/json-to-string";
+import DataTranscode from "@/lib/helper/data-transcode";
 import pdfRender from "@/lib/pdf-render";
+
 
 export async function POST(request: Request, { params }: { params: { type: string } }) {
     try {
@@ -10,8 +12,8 @@ export async function POST(request: Request, { params }: { params: { type: strin
             return Response.json({ error: 'Invalid Request: params.type must be "receipt", "invoice", or "purchase-order"' }, { status: 400 });
         }
 
-        const dataParse = ((typeof await data).toString() == 'object') ? JsonToString(data) : {}
-
+        const dataJson = await DataTranscode(data)
+        const dataParse = ((typeof await dataJson).toString() == 'object') ? JsonToString(dataJson) : {}
         const pdfBuffer = await pdfRender(params.type, dataParse)
         const pdf = new Blob([pdfBuffer]);
 

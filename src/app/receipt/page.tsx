@@ -28,8 +28,7 @@ const defaultData = {
 
 export default async function Receipt({ searchParams }: { searchParams: any }) {
     const data = await searchParams?.data
-
-    const dataJson = await DataTranscode(data)
+    const dataJson = await JSON.parse(data)
 
     return (
         <div className="page">

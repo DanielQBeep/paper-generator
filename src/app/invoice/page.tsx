@@ -28,7 +28,7 @@ const defaultData = {
 
 export default async function Invoice({ searchParams }: { searchParams: any }) {
     const data = await searchParams?.data
-    const dataJson = await DataTranscode(data)
+    const dataJson = await JSON.parse(data)
 
     const brands = dataJson?.brands
     const orderDate = dataJson?.orderDate
