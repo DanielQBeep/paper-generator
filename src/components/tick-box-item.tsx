@@ -7,12 +7,17 @@ const brands = [
     { name: 'Stellar Biomolecular Innovations Inc.', type: 'MF+/LAB-RMS' }
 ]
 
-const tick = (brands: any, i: number) => {
-    // console.log(brands)
-    if (i === 0) return brands?.psc
-    if (i === 1 || i === 3) return brands?.rms ?? brands?.mf3
-    if (i === 2) return brands?.key("mf+")
-    return true
+type Brands = {
+    rms?: boolean,
+    mf3?: boolean,
+    "mf+"?: boolean
+    undefined?: boolean
+}
+
+const tick = (brands: Brands, i: number) => {
+    if (i == 0) return brands?.mf3
+    if (i == 1) return brands?.["mf+"] ?? brands?.rms
+    return false
 }
 
 export default function TickBoxItem({ props, disableDate }: { props?: any, disableDate?: boolean }) {
