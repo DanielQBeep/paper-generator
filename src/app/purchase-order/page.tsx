@@ -41,7 +41,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
 
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}
-                <TickBoxItem props={tickItem} />
+                {/* <TickBoxItem props={tickItem} /> */}
                 <section>
                     <GradientHighlight props={{ title: "Details" }} />
                     <div className="grid grid-cols-3 text-xs justify-between py-2 mt-1">

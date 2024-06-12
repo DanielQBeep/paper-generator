@@ -41,7 +41,7 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
             {/* TODO: ADD TICK BOX*/}
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}
-                <TickBoxItem props={tickItem} />
+                {/* <TickBoxItem props={tickItem} /> */}
                 <section>
                     <div className="grid grid-cols-3 gap-4 mb-4">
                         <GradientHighlight props={{ title: "Billed to" }} />
