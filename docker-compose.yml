@@ -6,15 +6,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      name: smfd/paper-generator
       args:
         ENV_VARIABLE: ${ENV_VARIABLE}
         NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
     restart: always
     ports:
       - 7000:3000
-    # networks:
+      # networks:
       # - my_network
 
-# networks:
-  # my_network:
-    # external: true
+      # networks:
+      # my_network:
+      # external: true
