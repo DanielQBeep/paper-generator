@@ -3,10 +3,10 @@ version: "3"
 services:
   next-app:
     container_name: paper-generator
+    image: smfd/paper-generator
     build:
       context: .
       dockerfile: Dockerfile
-      name: smfd/paper-generator
       args:
         ENV_VARIABLE: ${ENV_VARIABLE}
         NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
