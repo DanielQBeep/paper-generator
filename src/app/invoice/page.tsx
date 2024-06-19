@@ -23,7 +23,7 @@ const defaultData = {
     "logo": "/images/ewg-logo.png",
     // "logo": "https://images.unsplash.com/photo-1597626133663-53df9633b799?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "logoAlt": "EW Global Logo",
-    "type": "Invoice"
+    "type": "Sales Order"
 }
 
 export default async function Invoice({ searchParams }: { searchParams: any }) {
