@@ -2,30 +2,43 @@ import { headers } from "next/headers";
 import puppeteer, { PDFOptions } from "puppeteer";
 
 export default async function pdfRender(type: string, dataParse: any) {
-    const browser: any = await puppeteer.launch({
-        executablePath: process.env.NODE_ENV === 'production' ? '/usr/bin/chromium-browser' : '',
-        headless: true,
-        ignoreDefaultArgs: ['--disable-extensions'],
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    console.log("startt render", "pdfRender")
 
-    const page = await browser.newPage();
+    try {
 
-    const pdfOptions = {
-        // path: "test.pdf",
-        format: 'A4',
-    } as PDFOptions;
+        const browser: any = await puppeteer.launch({
+            // executablePath: process.env.NODE_ENV === 'production' ? '/usr/bin/chromium-browser' : '',
+            executablePath: process.env.NODE_ENV === 'production' ? '' : '',
+            headless: true,
+            ignoreDefaultArgs: ['--disable-extensions'],
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        });
+        console.log("browser", browser)
 
-    await page.setExtraHTTPHeaders({
-        'X-CreatedAt': headers().get('X-CreatedAt'),
-        'X-version': headers().get('X-version')
-    });
+        console.log("browser", "browser")
 
-    await page.goto(`http://localhost:3000/${type}${dataParse}`, { waitUntil: 'networkidle0' });
+        const page = await browser.newPage();
 
-    const pdfBuffer = await page.pdf(pdfOptions);
-    await browser.close();
+        console.log("page", "page")
+        const pdfOptions = {
+            // path: "test.pdf",
+            format: 'A4',
+        } as PDFOptions;
 
-    return pdfBuffer as BlobPart
+        // await page.setExtraHTTPHeaders({
+        //     'X-CreatedAt': headers().get('X-CreatedAt'),
+        //     'X-version': headers().get('X-version')
+        // });
+
+        await page.goto(`http://localhost:3000/${type}${dataParse}`, { waitUntil: 'networkidle0' });
+
+        const pdfBuffer = await page.pdf(pdfOptions);
+        await browser.close();
+
+        return pdfBuffer as BlobPart
+    } catch (error: any) {
+        console.log("error", error)
+        return "ee" as BlobPart
+    }
 
 }
