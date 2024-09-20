@@ -7,6 +7,7 @@ import FlexibleBox from "@/components/flexible-box";
 import DataTranscode from "@/lib/helper/data-transcode";
 
 import tnc from "@/const/tnc/invoice.json"
+import { headers } from "next/headers";
 
 const defaultData = {
     "companyName": "NXG Global Sdn Bhd",
@@ -34,6 +35,12 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
     const orderDate = dataJson?.orderDate
 
     const tickItem = { brands, orderDate }
+
+    const updatedData = {
+        ...defaultData,
+        createdAt: headers().get('X-CreatedAt')?.toString() ?? null,
+        version: headers().get('X-version') ?? null,
+    };
 
     return (
         <div className="page">

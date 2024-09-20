@@ -2,14 +2,13 @@ import JsonToString from "@/lib/helper/json-to-string";
 import DataTranscode from "@/lib/helper/data-transcode";
 import pdfRender from "@/lib/pdf-render";
 
-
 export async function POST(request: Request, { params }: { params: { type: string } }) {
     try {
-        const validTypes = ['receipt', 'invoice', 'purchase-order'];
+        const validTypes = ['receipt', 'invoice', 'invoice-ebook', 'purchase-order'];
         const data = await request?.json()
 
         if (!validTypes.includes(params.type)) {
-            return Response.json({ error: 'Invalid Request: params.type must be "receipt", "invoice", or "purchase-order"' }, { status: 400 });
+            return Response.json({ error: 'Invalid Request: params.type must be "receipt", "invoice", "invoice-ebook" or "purchase-order"' }, { status: 400 });
         }
 
         const dataJson = await DataTranscode(data)

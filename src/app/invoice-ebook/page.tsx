@@ -31,11 +31,6 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
     const data = await searchParams?.data
     const dataJson = await JSON.parse(data)
 
-    const brands = dataJson?.brands
-    const orderDate = dataJson?.orderDate
-
-    const tickItem = { brands, orderDate }
-
     const updatedData = {
         ...defaultData,
         createdAt: headers().get('X-CreatedAt')?.toString() ?? null,
@@ -44,32 +39,20 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
 
     return (
         <div className="page">
-            <Headers props={updatedData} />
-            {/* TODO: ADD TICK BOX*/}
+            <Headers props={defaultData} />
             <div className="mx-12">
-                {/* <CompanyInfo props={defaultData} /> */}
-                {/* <TickBoxItem props={tickItem} /> */}
                 <section>
-                    <div className="grid grid-cols-3 gap-4 mb-4">
-                        <GradientHighlight props={{ title: "Billed to" }} />
-                        <GradientHighlight props={{ title: "Sales order details" }} className="col-span-2" />
+                    <div className="grid grid-cols-1 gap-4 mb-4">
+                        <GradientHighlight props={{ title: "Invoice details" }} className="col-span-2" />
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
-                        <FlexibleBox id="billTo" disableBottomMargin={true}>
-                            <div className="font-bold">{dataJson?.billTo?.name}</div>
-                            <div className="pt-4">{dataJson?.billTo?.address?.street}</div>
-                            <div>{dataJson?.billTo?.address?.postcode} {dataJson?.billTo?.address?.city}</div>
-                            <div>{dataJson?.billTo?.address?.country}</div>
-                            <div className="pt-4">{dataJson?.billTo?.contactNo}</div>
-                            <div className="pb-4">{dataJson?.billTo?.email}</div>
-                        </FlexibleBox>
+                    <div className="grid grid-cols-1 gap-4">
                         <div className="grid grid-cols-2 text-xs col-span-2 h-fit">
                             <div className="grid grid-cols-2">
-                                <div className="font-semibold">Sales Order No:</div>
+                                <div className="font-semibold">Invoice No:</div>
                                 <div className="text-black/70">{dataJson?.invoiceNo}</div>
                             </div>
                             <div className="grid grid-cols-2">
-                                <div className="font-semibold">Sales Order Date:</div>
+                                <div className="font-semibold">Invoice Date:</div>
                                 <div className="text-black/70">{dataJson?.invoiceDate}</div>
                             </div>
                             <hr className="my-1 bg-teal-600 max-h-0.5 min-h-0.5 mx-2" />
@@ -162,7 +145,7 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
                     </div>
                 </div>
                 <div className=" col-span-2 text-xs text-gray-500">
-                    *This is a computer generated sales order and does not require a signature.
+                    *This is a computer generated invoice and does not require a signature.
                 </div>
                 <Footer props={tnc} />
             </div>
