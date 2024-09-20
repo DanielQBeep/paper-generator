@@ -25,10 +25,17 @@ export default async function pdfRender(type: string, dataParse: any) {
             format: 'A4',
         } as PDFOptions;
 
-        await page.setExtraHTTPHeaders({
-            'X-CreatedAt': headers().get('X-CreatedAt'),
-            'X-version': headers().get('X-version')
-        });
+
+        const createdAt = headers().get('X-CreatedAt')
+        const version = headers().get('X-version')
+
+        if (createdAt && version) {
+            console.log("masukkk")
+            await page.setExtraHTTPHeaders({
+                'X-CreatedAt': headers().get('X-CreatedAt'),
+                'X-version': headers().get('X-version')
+            });
+        }
 
         const port = process.env.NODE_ENV === 'production' ? 7000 : 3000
 
@@ -40,7 +47,7 @@ export default async function pdfRender(type: string, dataParse: any) {
         return pdfBuffer as BlobPart
     } catch (error: any) {
         console.log("error", error)
-        return "ee" as BlobPart
+        return false
     }
 
 }

@@ -42,6 +42,8 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
         version: headers().get('X-version') ?? null,
     };
 
+    console.log("updatedData", updatedData)
+
     return (
         <div className="page">
             <Headers props={updatedData} />

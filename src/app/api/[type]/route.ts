@@ -17,6 +17,11 @@ export async function POST(request: Request, { params }: { params: { type: strin
         const dataParse = ((typeof await dataJson).toString() == 'object') ? JsonToString(dataJson) : {}
         console.log("dataParse", "dataParse")
         const pdfBuffer = await pdfRender(params.type, dataParse)
+
+        if (!pdfBuffer) {
+            return new Response("Error processing data", { status: 500 })
+        }
+
         console.log("pdfBuffer", "pdfBuffer")
         const pdf = new Blob([pdfBuffer]);
         console.log("pdf", "pdf")
