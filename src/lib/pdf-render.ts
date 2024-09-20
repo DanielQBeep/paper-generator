@@ -39,7 +39,7 @@ export default async function pdfRender(type: string, dataParse: any) {
 
         const port = process.env.NODE_ENV === 'production' ? 7000 : 3000
 
-        await page.goto(`http://localhost:3000/${type}${dataParse}`, { waitUntil: 'networkidle0' });
+        await page.goto(`http://localhost:${port}/${type}${dataParse}`, { waitUntil: 'networkidle0' });
 
         const pdfBuffer = await page.pdf(pdfOptions);
         await browser.close();
