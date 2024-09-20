@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 export default function Header({ props }: { props?: { logo?: String, logoAlt?: String, type: String, createdAt?: any, version?: any } }) {
-    const date = new Date().toUTCString()
+    const date = new Date(props?.createdAt).toUTCString()
     console.log("date", date)
     console.log("created", props?.createdAt)
     return (

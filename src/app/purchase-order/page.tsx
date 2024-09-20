@@ -44,7 +44,7 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
 
     return (
         <div className="page">
-            <Headers props={defaultData} />
+            <Headers props={updatedData} />
 
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}

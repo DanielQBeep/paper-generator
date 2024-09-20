@@ -25,10 +25,10 @@ export default async function pdfRender(type: string, dataParse: any) {
             format: 'A4',
         } as PDFOptions;
 
-        // await page.setExtraHTTPHeaders({
-        //     'X-CreatedAt': headers().get('X-CreatedAt'),
-        //     'X-version': headers().get('X-version')
-        // });
+        await page.setExtraHTTPHeaders({
+            'X-CreatedAt': headers().get('X-CreatedAt'),
+            'X-version': headers().get('X-version')
+        });
 
         await page.goto(`http://localhost:3000/${type}${dataParse}`, { waitUntil: 'networkidle0' });
 

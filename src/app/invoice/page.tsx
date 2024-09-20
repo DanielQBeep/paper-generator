@@ -36,15 +36,15 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
 
     const tickItem = { brands, orderDate }
 
-    // const updatedData = {
-    //     ...defaultData,
-    //     createdAt: headers().get('X-CreatedAt')?.toString() ?? null,
-    //     version: headers().get('X-version') ?? null,
-    // };
+    const updatedData = {
+        ...defaultData,
+        createdAt: headers().get('X-CreatedAt')?.toString() ?? null,
+        version: headers().get('X-version') ?? null,
+    };
 
     return (
         <div className="page">
-            <Headers props={defaultData} />
+            <Headers props={updatedData} />
             {/* TODO: ADD TICK BOX*/}
             <div className="mx-12">
                 {/* <CompanyInfo props={defaultData} /> */}
