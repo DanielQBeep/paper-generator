@@ -7,7 +7,7 @@ export default function CompanyInfo({ props }: { props?: { companyName: string, 
                     {props?.companyAddress.street}, {props?.companyAddress.postcode} {props?.companyAddress.city}, {props?.companyAddress.state}, {props?.companyAddress.country}
                 </div>
                 <div className=" col-span-1" />
-                <div className="text-sm">
+                <div className="text-sm -ml-4">
                     <div className="flex justify-between">
                         <div className="font-semibold mr-2">Tel:</div>
                         <div className="ml-2">{props?.tel}</div>

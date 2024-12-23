@@ -2,8 +2,7 @@ import Image from 'next/image'
 
 export default function Header({ props }: { props?: { logo?: String, logoAlt?: String, type: String, createdAt?: any, version?: any } }) {
     const date = props?.createdAt ? new Date(props?.createdAt).toUTCString() : null
-    console.log("date##", date)
-    console.log("created##", props?.createdAt)
+
     return (
         <>
             <div className='min-w-full min-h-28 absolute top-0 left-0 bg-gradient-to-r from-teal-100/30 from-20% via-white/5 via-30%'>

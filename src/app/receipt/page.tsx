@@ -129,9 +129,13 @@ export default async function Receipt({ searchParams }: { searchParams: any }) {
                 </div>
                 <div className=" grid grid-cols-3 py-2">
                     <div className=" col-span-2 text-xs text-gray-500">
-                        {dataJson?.remark ? "Remark: " + dataJson?.remark : ""}
+                        {
+                            dataJson?.remark
+                                ? "Remark: " + dataJson?.remark.text
+                                : ""
+                        }
                     </div>
-                    <div className=" text-xs text-teal-700">
+                    <div className=" text-xs text-teal-700 space-y-1">
                         <div className="flex justify-between">
                             <div>Total before SST</div>
                             <div>{dataJson?.totalBeforeSST}</div>

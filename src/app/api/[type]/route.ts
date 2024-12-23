@@ -7,24 +7,21 @@ export async function POST(request: Request, { params }: { params: { type: strin
         const validTypes = ['receipt', 'invoice', 'invoice-ebook', 'purchase-order'];
         const data = await request?.json()
 
+        console.log(params.type)
+
         if (!validTypes.includes(params.type)) {
             return Response.json({ error: 'Invalid Request: params.type must be "receipt", "invoice", "invoice-ebook" or "purchase-order"' }, { status: 400 });
         }
 
-        console.log("data", "data")
         const dataJson = await DataTranscode(data)
-        console.log("dataJson", "dataJson")
         const dataParse = ((typeof await dataJson).toString() == 'object') ? JsonToString(dataJson) : {}
-        console.log("dataParse", "dataParse")
         const pdfBuffer = await pdfRender(params.type, dataParse)
 
         if (!pdfBuffer) {
             return new Response("Error processing data", { status: 500 })
         }
 
-        console.log("pdfBuffer", "pdfBuffer")
         const pdf = new Blob([pdfBuffer]);
-        console.log("pdf", "pdf")
 
         // PDF BLOB
         // return Response.json({ pdf: pdfBuffer });

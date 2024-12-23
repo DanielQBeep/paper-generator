@@ -2,10 +2,7 @@ import { headers } from "next/headers";
 import puppeteer, { PDFOptions } from "puppeteer";
 
 export default async function pdfRender(type: string, dataParse: any) {
-    console.log("startt render", "pdfRender")
-
     try {
-
         const browser: any = await puppeteer.launch({
             // executablePath: process.env.NODE_ENV === 'production' ? '/usr/bin/chromium-browser' : '',
             executablePath: process.env.NODE_ENV === 'production' ? '' : '',
@@ -13,31 +10,25 @@ export default async function pdfRender(type: string, dataParse: any) {
             ignoreDefaultArgs: ['--disable-extensions'],
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
-        console.log("browser", browser)
-
-        console.log("browser", "browser")
 
         const page = await browser.newPage();
 
-        console.log("page", "page")
         const pdfOptions = {
             // path: "test.pdf",
             format: 'A4',
         } as PDFOptions;
 
-
         const createdAt = headers().get('X-CreatedAt')
         const version = headers().get('X-version')
 
         if (createdAt && version) {
-            console.log("masukkk")
             await page.setExtraHTTPHeaders({
                 'X-CreatedAt': headers().get('X-CreatedAt'),
                 'X-version': headers().get('X-version')
             });
         }
 
-        const port = process.env.NODE_ENV === 'production' ? 7000 : 3000
+        const port = process.env.NODE_ENV === 'production' ? 7000 : 3001
 
         await page.goto(`http://localhost:${port}/${type}${dataParse}`, { waitUntil: 'networkidle0' });
 
@@ -46,7 +37,6 @@ export default async function pdfRender(type: string, dataParse: any) {
 
         return pdfBuffer as BlobPart
     } catch (error: any) {
-        console.log("error", error)
         return false
     }
 

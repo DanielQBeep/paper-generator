@@ -42,8 +42,6 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
         version: headers().get('X-version') ?? null,
     };
 
-    console.log("updatedData", updatedData)
-
     return (
         <div className="page">
             <Headers props={updatedData} />
@@ -65,10 +63,10 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
                             <div className="pt-4">{dataJson?.billTo?.contactNo}</div>
                             <div className="pb-4">{dataJson?.billTo?.email}</div>
                         </FlexibleBox>
-                        <div className="grid grid-cols-2 text-xs col-span-2 h-fit">
+                        <div className="grid grid-cols-2 text-2xs col-span-2 h-fit gap-2">
                             <div className="grid grid-cols-2">
                                 <div className="font-semibold">Sales Order No:</div>
-                                <div className="text-black/70">{dataJson?.invoiceNo}</div>
+                                <div className="text-black/70 ">{dataJson?.invoiceNo}</div>
                             </div>
                             <div className="grid grid-cols-2">
                                 <div className="font-semibold">Sales Order Date:</div>
@@ -148,7 +146,7 @@ export default async function Invoice({ searchParams }: { searchParams: any }) {
                     <div className=" col-span-2 text-xs text-gray-500">
                         {/* *This is a computer generated invoice and does not require a signature. */}
                     </div>
-                    <div className=" text-xs text-teal-700">
+                    <div className=" text-xs text-teal-700 space-y-1">
                         <div className="flex justify-between">
                             <div>Total before SST</div>
                             <div>{dataJson?.totalBeforeSST}</div>
